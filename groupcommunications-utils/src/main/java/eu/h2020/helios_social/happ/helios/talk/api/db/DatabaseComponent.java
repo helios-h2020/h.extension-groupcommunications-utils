@@ -9,6 +9,7 @@ import eu.h2020.helios_social.happ.helios.talk.api.crypto.SecretKey;
 import eu.h2020.helios_social.happ.helios.talk.api.identity.Identity;
 import eu.h2020.helios_social.happ.helios.talk.api.nullsafety.NotNullByDefault;
 import eu.h2020.helios_social.happ.helios.talk.api.settings.Settings;
+import eu.h2020.helios_social.modules.groupcommunications.api.contact.PendingContactType;
 import eu.h2020.helios_social.modules.groupcommunications.api.event.HeliosEvent;
 import eu.h2020.helios_social.modules.groupcommunications.api.forum.ForumMember;
 import eu.h2020.helios_social.modules.groupcommunications.api.forum.ForumMemberRole;
@@ -163,14 +164,23 @@ public interface DatabaseComponent extends TransactionManager {
 	Collection<PendingContact> getPendingContacts(
 			Transaction transaction) throws DbException;
 
+	int countPendingContacts(Transaction transaction,
+							 PendingContactType pendingContactType) throws DbException;
+
 	Collection<ContextInvitation> getPendingContextInvitations(
 			Transaction transaction) throws DbException;
+
+	int countPendingContextInvitations(Transaction transaction,
+									   boolean isIncoming) throws DbException;
 
 	Collection<ContextInvitation> getPendingContextInvitations(
 			Transaction transaction, String contextId) throws DbException;
 
 	Collection<GroupInvitation> getGroupInvitations(Transaction transaction)
 			throws DbException;
+
+	int countPendingGroupInvitations(Transaction transaction,
+									 boolean isIncoming) throws DbException;
 
 	Message getMessage(Transaction transaction, String messageId)
 			throws DbException;
@@ -204,6 +214,9 @@ public interface DatabaseComponent extends TransactionManager {
 			throws DbException;
 
 	void removeForumMemberList(Transaction transaction, String groupId)
+			throws DbException;
+
+	void removeGroup(Transaction transaction, String groupId)
 			throws DbException;
 
 	void removeProfile(Transaction transaction, String contextId)
@@ -320,8 +333,10 @@ public interface DatabaseComponent extends TransactionManager {
 			GroupInvitation groupInvite)
 			throws DbException;
 
+	boolean groupAlreadyExists(Transaction transaction, String groupId) throws DbException;
+
 	void addGroup(Transaction transaction, Group group, byte[] descriptor,
-			GroupType type)
+				  GroupType type)
 			throws DbException;
 
 	void addContactGroup(Transaction txn, Group group, ContactId contactId)
