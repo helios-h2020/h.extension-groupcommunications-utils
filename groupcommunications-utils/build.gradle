@@ -4,16 +4,16 @@ targetCompatibility = 1.8
 
 apply plugin: 'ru.vyarus.animalsniffer'
 
-configurations.all {
+/*configurations.all {
 	resolutionStrategy.dependencySubstitution {
 		substitute module("eu.h2020.helios_social.modules.groupcommunications-api:groupcommunications-api") with project(':groupcommunications-api')
 	}
-}
+}*/
 
 dependencies {
 	implementation "com.google.dagger:dagger:2.24"
 	implementation 'com.google.code.findbugs:jsr305:3.0.2'
-	implementation 'eu.h2020.helios_social.modules.groupcommunications-api:groupcommunications-api:1.0.6'
+	implementation 'eu.h2020.helios_social.modules.groupcommunications-api:groupcommunications-api:1.0.9'
 	compile group: 'org.json', name: 'json', version: '20190722'
 
 	testImplementation 'junit:junit:4.12'
