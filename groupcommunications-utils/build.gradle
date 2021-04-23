@@ -13,7 +13,7 @@ apply plugin: 'ru.vyarus.animalsniffer'
 dependencies {
 	implementation "com.google.dagger:dagger:2.24"
 	implementation 'com.google.code.findbugs:jsr305:3.0.2'
-	implementation 'eu.h2020.helios_social.modules.groupcommunications-api:groupcommunications-api:1.0.9'
+	implementation 'eu.h2020.helios_social.modules.groupcommunications-api:groupcommunications-api:1.0.10'
 	compile group: 'org.json', name: 'json', version: '20190722'
 
 	testImplementation 'junit:junit:4.12'
@@ -22,15 +22,4 @@ dependencies {
 	testImplementation "org.jmock:jmock-legacy:2.8.2"
 
 	signature 'org.codehaus.mojo.signature:java16:1.1@signature'
-}
-
-configurations {
-	testOutput.extendsFrom(testCompile)
-}
-task jarTest(type: Jar, dependsOn: testClasses) {
-	from sourceSets.test.output
-	classifier = 'test'
-}
-artifacts {
-	testOutput jarTest
 }
