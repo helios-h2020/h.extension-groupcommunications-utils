@@ -5,6 +5,7 @@ import java.util.Map;
 
 import javax.annotation.Nullable;
 
+import eu.h2020.helios_social.modules.groupcommunications.api.resourcediscovery.EntityType;
 import eu.h2020.helios_social.modules.groupcommunications_utils.crypto.SecretKey;
 import eu.h2020.helios_social.modules.groupcommunications_utils.identity.Identity;
 import eu.h2020.helios_social.modules.groupcommunications_utils.nullsafety.NotNullByDefault;
@@ -194,6 +195,8 @@ public interface DatabaseComponent extends TransactionManager {
 	Collection<MessageHeader> getMessageHeaders(Transaction transaction,
 			String groupId) throws DbException;
 
+	MessageHeader getMessageHeader(Transaction transaction, String messageId) throws DbException;
+
 	void removeContact(Transaction transaction, ContactId c)
 			throws DbException;
 
@@ -277,6 +280,9 @@ public interface DatabaseComponent extends TransactionManager {
 	Metadata getGroupMetadata(Transaction transaction, String groupId)
 			throws DbException;
 
+	Metadata getInvertedIndexMetadata(Transaction transaction, EntityType entityType, String contextId)
+			throws DbException;
+
 	Map<String, Metadata> getGroupMetadata(
 			Transaction transaction, String[] groupIds)
 			throws DbException;
@@ -310,8 +316,12 @@ public interface DatabaseComponent extends TransactionManager {
 			Metadata meta)
 			throws DbException;
 
-	void mergeMessageMetadata(Transaction transaction, String messageId,
-			Metadata meta)
+    void mergeInvertedIndexMetadata(Transaction transaction, EntityType entity, String contextId,
+                                    Metadata meta)
+            throws DbException;
+
+    void mergeMessageMetadata(Transaction transaction, String messageId,
+                              Metadata meta)
 			throws DbException;
 
 	void mergeContextMetadata(Transaction transaction, String contextId,
