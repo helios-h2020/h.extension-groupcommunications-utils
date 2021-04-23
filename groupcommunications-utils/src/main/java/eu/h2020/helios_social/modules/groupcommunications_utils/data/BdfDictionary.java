@@ -88,6 +88,26 @@ public class BdfDictionary extends TreeMap<String, Object> {
         return defaultValue;
     }
 
+    public Integer getInteger(String key) throws FormatException {
+        Object o = get(key);
+        if (o instanceof Integer) return (Integer) o;
+        throw new FormatException();
+    }
+
+    @Nullable
+    public Integer getOptionalInteger(String key) throws FormatException {
+        Object o = get(key);
+        if (o == null || o == NULL_VALUE) return null;
+        if (o instanceof Integer) return (Integer) o;
+        throw new FormatException();
+    }
+
+    public Integer getInteger(String key, Integer defaultValue) {
+        Object o = get(key);
+        if (o instanceof Integer) return (Integer) o;
+        return defaultValue;
+    }
+
     public Double getDouble(String key) throws FormatException {
         Object o = get(key);
         if (o instanceof Double) return (Double) o;

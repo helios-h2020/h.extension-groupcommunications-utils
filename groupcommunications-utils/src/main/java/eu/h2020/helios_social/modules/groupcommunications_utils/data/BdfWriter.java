@@ -14,6 +14,8 @@ public interface BdfWriter {
 
 	void writeBoolean(boolean b) throws IOException;
 
+	void writeInteger(int i) throws IOException;
+
 	void writeLong(long l) throws IOException;
 
 	void writeDouble(double d) throws IOException;

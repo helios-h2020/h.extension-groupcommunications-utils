@@ -28,9 +28,15 @@ public interface BdfReader {
 
 	boolean hasLong() throws IOException;
 
+	boolean hasInteger() throws IOException;
+
 	long readLong() throws IOException;
 
-	void skipLong() throws IOException;
+	int readInteger() throws IOException;
+
+    void skipInteger() throws IOException;
+
+    void skipLong() throws IOException;
 
 	boolean hasDouble() throws IOException;
 
