@@ -9,6 +9,7 @@ import eu.h2020.helios_social.modules.groupcommunications_utils.nullsafety.NotNu
 public class Identity {
 
 	private final String id;
+	//peerId
 	private String networkId;
 	private byte[] profilePic;
 	private final String alias;
