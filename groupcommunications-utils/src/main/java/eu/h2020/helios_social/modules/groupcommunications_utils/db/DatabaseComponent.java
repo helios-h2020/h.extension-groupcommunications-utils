@@ -290,8 +290,10 @@ public interface DatabaseComponent extends TransactionManager {
 	void removeContext(Transaction transaction, String contextId)
 			throws DbException;
 
-	void removePendingContact(Transaction transaction,
-			ContactId pendingContactId) throws DbException;
+    void removeContact(Transaction transaction, String contactId, String contextId) throws DbException;
+
+    void removePendingContact(Transaction transaction,
+                              ContactId pendingContactId) throws DbException;
 
 	void removePendingContext(Transaction transaction,
 			String contextId) throws DbException;
