@@ -11,7 +11,7 @@ import jdk.nashorn.internal.ir.annotations.Immutable;
 @Immutable
 @NotNullByDefault
 public class ContextRemovedEvent extends Event {
-	@Nullable
+
 	private final String contextId;
 
 	public ContextRemovedEvent(String contextId) {
