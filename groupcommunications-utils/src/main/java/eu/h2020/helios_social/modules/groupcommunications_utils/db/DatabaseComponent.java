@@ -5,6 +5,7 @@ import java.util.Map;
 
 import javax.annotation.Nullable;
 
+import eu.h2020.helios_social.modules.groupcommunications.api.group.GroupMember;
 import eu.h2020.helios_social.modules.groupcommunications.api.resourcediscovery.EntityType;
 import eu.h2020.helios_social.modules.groupcommunications_utils.crypto.SecretKey;
 import eu.h2020.helios_social.modules.groupcommunications_utils.identity.Identity;
@@ -81,6 +82,12 @@ public interface DatabaseComponent extends TransactionManager {
 			throws DbException;
 
 	void addContact(Transaction transaction, Contact contact)
+			throws DbException;
+
+	void addGroupMember(Transaction transaction, GroupMember groupMember)
+		throws DbException;
+
+	Collection<GroupMember> getGroupMembers(Transaction transaction, String groupId)
 			throws DbException;
 
     void addEvent(Transaction transaction, HeliosEvent event)
@@ -353,4 +360,12 @@ public interface DatabaseComponent extends TransactionManager {
 
 	void addContactGroup(Transaction txn, Group group, ContactId contactId)
 			throws DbException;
+
+	void setContextPrivateName(Transaction txn, String contextId, String name) throws DbException;
+
+	void addContextPrivateNameFeature(Transaction txn) throws DbException;
+
+	void setContextName(Transaction txn, String contextId, String name) throws DbException;
+
+	Collection<DBContext> getContextsWithoutPrivateNames(Transaction txn) throws DbException;
 }
