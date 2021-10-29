@@ -68,4 +68,9 @@ public interface AccountManager {
 	 */
 	void changePassword(String oldPassword, String newPassword)
 			throws DecryptionException;
+
+	String getUserPassword();
+
+	void setUserPassword(String password);
+
 }

@@ -2,9 +2,9 @@ package eu.h2020.helios_social.modules.groupcommunications_utils.lifecycle;
 
 import java.util.concurrent.ExecutorService;
 
+import eu.h2020.helios_social.modules.groupcommunications.api.exception.DbException;
 import eu.h2020.helios_social.modules.groupcommunications_utils.crypto.SecretKey;
 import eu.h2020.helios_social.modules.groupcommunications_utils.db.DatabaseComponent;
-import eu.h2020.helios_social.modules.groupcommunications.api.exception.DbException;
 import eu.h2020.helios_social.modules.groupcommunications_utils.db.Transaction;
 import eu.h2020.helios_social.modules.groupcommunications_utils.nullsafety.NotNullByDefault;
 

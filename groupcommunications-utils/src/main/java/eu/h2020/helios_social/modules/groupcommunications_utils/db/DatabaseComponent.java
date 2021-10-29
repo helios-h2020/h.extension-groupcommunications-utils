@@ -1,10 +1,15 @@
 package eu.h2020.helios_social.modules.groupcommunications_utils.db;
 
+import java.security.KeyPair;
+import java.sql.Connection;
 import java.util.Collection;
+import java.util.List;
 import java.util.Map;
 
 import javax.annotation.Nullable;
 
+import eu.h2020.helios_social.modules.groupcommunications.api.forum.sharing.ForumAccessRequest;
+import eu.h2020.helios_social.modules.groupcommunications.api.group.GroupMember;
 import eu.h2020.helios_social.modules.groupcommunications.api.resourcediscovery.EntityType;
 import eu.h2020.helios_social.modules.groupcommunications_utils.crypto.SecretKey;
 import eu.h2020.helios_social.modules.groupcommunications_utils.identity.Identity;
@@ -81,6 +86,15 @@ public interface DatabaseComponent extends TransactionManager {
 			throws DbException;
 
 	void addContact(Transaction transaction, Contact contact)
+			throws DbException;
+
+	void addGroupMember(Transaction transaction, GroupMember groupMember)
+		throws DbException;
+
+	void removeGroupMember(Transaction transaction, GroupMember groupMember)
+			throws DbException;
+
+	Collection<GroupMember> getGroupMembers(Transaction transaction, String groupId)
 			throws DbException;
 
     void addEvent(Transaction transaction, HeliosEvent event)
@@ -290,8 +304,10 @@ public interface DatabaseComponent extends TransactionManager {
 	void removeContext(Transaction transaction, String contextId)
 			throws DbException;
 
-	void removePendingContact(Transaction transaction,
-			ContactId pendingContactId) throws DbException;
+    void removeContact(Transaction transaction, String contactId, String contextId) throws DbException;
+
+    void removePendingContact(Transaction transaction,
+                              ContactId pendingContactId) throws DbException;
 
 	void removePendingContext(Transaction transaction,
 			String contextId) throws DbException;
@@ -351,4 +367,38 @@ public interface DatabaseComponent extends TransactionManager {
 
 	void addContactGroup(Transaction txn, Group group, ContactId contactId)
 			throws DbException;
+
+	void setContextPrivateName(Transaction txn, String contextId, String name) throws DbException;
+
+
+	void setContextName(Transaction txn, String contextId, String name) throws DbException;
+
+
+	void addGroupAccessRequest(Transaction txn, ForumAccessRequest forumAccessRequest)
+			throws DbException;
+
+
+	Collection<ForumAccessRequest> getGroupAccessRequests(Transaction txn)
+			throws DbException;
+
+
+	void removeGroupAccessRequest(Transaction txn, ContactId contactId,
+								  String pendingGroupId)
+			throws DbException;
+
+	int countGroupAccessRequest(Transaction transaction,
+									 boolean isIncoming) throws DbException;
+
+	boolean containsGroupAccessRequestByGroupId(Transaction txn,
+													   String pendingGroupId) throws DbException;
+
+	int countUnreadMessagesInContext(Transaction transaction, String contextId) throws DbException;
+
+	void addCryptoKeys(Transaction transaction, KeyPair keyPair)
+			throws DbException;
+
+	boolean containsCryptoKeys(Transaction transaction)
+			throws DbException;
+
+	KeyPair getCryptoKeys(Transaction txn) throws DbException;
 }

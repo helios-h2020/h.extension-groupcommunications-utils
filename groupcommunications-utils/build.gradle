@@ -14,8 +14,8 @@ dependencies {
 	implementation "com.google.dagger:dagger:2.24"
 	implementation 'com.google.code.findbugs:jsr305:3.0.2'
 	implementation 'eu.h2020.helios_social.modules' +
-			'.groupcommunications-api:groupcommunications-api:1.0.11'
-	compile group: 'org.json', name: 'json', version: '20190722'
+			'.groupcommunications-api:groupcommunications-api:1.0.13'
+    implementation 'org.json:json:20190722'
 
 	testImplementation 'junit:junit:4.12'
 	testImplementation "org.jmock:jmock:2.8.2"
