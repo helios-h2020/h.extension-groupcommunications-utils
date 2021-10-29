@@ -1,5 +1,8 @@
 package eu.h2020.helios_social.modules.groupcommunications_utils.identity;
 
+import java.security.PrivateKey;
+import java.security.PublicKey;
+
 import eu.h2020.helios_social.modules.groupcommunications_utils.crypto.CryptoExecutor;
 import eu.h2020.helios_social.modules.groupcommunications_utils.crypto.SecretKey;
 import eu.h2020.helios_social.modules.groupcommunications.api.exception.DbException;
@@ -30,4 +33,9 @@ public interface IdentityManager {
 	void setProfilePicture(byte[] profilePicture) throws DbException;
 
 	String getHeliosLink();
+
+	PrivateKey getPrivateKey() throws DbException;
+
+	PublicKey getPublicKey() throws DbException;
+
 }
